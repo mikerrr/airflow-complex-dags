@@ -141,7 +141,7 @@ def upload_data_to_posgresql(**kwargs):
     return
 
 
-dap_brands_dag = DAG(
+copy_query_to_table_dag = DAG(
     'DAG_name',
     default_args = default_args,
     description = 'DAG description',
@@ -152,11 +152,11 @@ dap_brands_dag = DAG(
 get_data_operator = PythonOperator(
     task_id='get_data', 
     python_callable=get_data,
-    dag=dap_brands_dag)
+    dag=copy_query_to_table_dag)
 
 upload_data_to_posgresql_operator = PythonOperator(
     task_id='upload_data_to_posgresql', 
     python_callable=upload_data_to_posgresql,
-    dag=dap_brands_dag)
+    dag=copy_query_to_table_dag)
 
 get_data_operator >> upload_data_to_posgresql_operator
