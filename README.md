@@ -11,3 +11,5 @@ postgresql_create_table_statement_from_dict.py : Function of creating 'CREATE TA
 dag_copy_query_to_table.py: DAG example using two previous functions. Copying result of a complex query to separate table in PostgreSQL. Source and target can be two different PgSQL servers.
 
 dag_appmetrica_profiles.py: DAG for downloading profiles information from Yandex Appmetrica. Profiles volume is not big, so you can download all of them every time
+
+dag_appmetrica_installs.py: DAG for downloading installs (of monitored application) information from Yandex Appmetrica. There should exist special variable where last dowload time is stored. First time there is full download, next times - increment downloads. Also we delete duplicated in target table if any.
