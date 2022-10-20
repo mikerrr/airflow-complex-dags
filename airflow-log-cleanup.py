@@ -32,8 +32,6 @@ def find_old_logs():
         FROM dag_run
         WHERE execution_date::DATE <= now()::DATE - INTERVAL '{MAX_LOG_DAYS} days';
     """
-    #src_pg = PostgresHook(postgres_conn_id='airflow_db')
-    #conn = src_pg.get_conn()
     logging.info("Fetching old logs to purge...")
     session = settings.Session()
     res = session.execute(sql)
